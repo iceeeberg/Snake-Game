@@ -27,43 +27,61 @@ ctx.fill();
 ctx.closePath;
 };
 
-function gameOver () {
-  let gradient = ctx.createLinearGradient(0,0, canvas.width, 0);
-  gradient.addColorStop("0","blue");
-  ctx.fillStyle = gradient;
-  ctx.fillText("Game Over", 120, 75);
-}
+// function gameOver () {
+//   let gradient = ctx.createLinearGradient(0,0, canvas.width, 0);
+//   gradient.addColorStop("0","blue");
+//   ctx.fillStyle = gradient;
+//   ctx.fillText("Game Over", 120, 75);
+// }
 
-drawSnake();
-drawApple();
-
+let direction;
 
 function moveSnake() {
-  window.addEventListener('keydown', (e) => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawSnake();
-  drawApple();
-  switch (e.keyCode) {
-    case 37:
-      snakePositionX -= snakeSpeedX
-      break;
-    case 38:
-      snakePositionY -= snakeSpeedY
-      break;
-    case 39:
+  switch (direction) {
+    case "right":
       snakePositionX += snakeSpeedX
       break;
-    case 40:
+    case "left":
+      snakePositionX -= snakeSpeedX
+      break;
+    case "up":
+      snakePositionY -= snakeSpeedY
+      break;
+    case "down":
       snakePositionY += snakeSpeedY
       break;
     default:
       break;
-      
-    }
-  }) 
-}
+  }
 
-setInterval(moveSnake, 100)
+  window.addEventListener("keydown", (e) => {
+    switch (e.key) {
+      case "ArrowDown":
+        direction = "down"
+        break;
+      case "ArrowUp":
+        direction = "up"
+          break;
+      case "ArrowRight":
+        direction = "right"
+          break;
+      case "ArrowLeft":
+        direction = "left"
+          break;
+      default:
+        break;
+    }
+  })
+
+window.onload = () => {
+  setInterval(() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawSnake();
+    drawApple();
+    moveSnake();
+  }, 100);
+};
+}
 
 // function moveSnake() {
 //   ctx.clearRect(0, 0, canvas.width, canvas.height);
