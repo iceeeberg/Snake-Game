@@ -38,7 +38,7 @@ ctx.closePath;
 
 function drawApple() {
 ctx.beginPath();
-ctx.arc(applePositionX,applePositionY,appleHeight,0,Math.PI*2, false);
+ctx.rect(applePositionX,applePositionY,2,2);
 ctx.fillStyle = "#FF0000"
 ctx.fill();
 ctx.closePath;
@@ -125,7 +125,7 @@ function appleDetection (apple, snake) {
     return false
   }
 
-  if (distX <= (snake.w/2 + apple.r)) {
+  if (distX < (snake.w/2 + apple.r)) {
     return true
   }
   if (distY <= (snake.h/2 + apple.r)) {
