@@ -21,14 +21,15 @@ let snake = {
 let apple = {
   x: 180,
   y: 100,
-  r:2
+  w: 2,
+  h: 2
 };
 
 let score = 0;
 
 let direction;
 
-function drawSnake() { 
+function drawSnake() {
 ctx.beginPath();
 ctx.rect(snakePositionX,snakePositionY,7,7 );
 ctx.fillStyle = "#90EE90"
@@ -114,27 +115,25 @@ function reset(){
 };
 
 function appleDetection (apple, snake) {
-  let distX = Math.abs(apple.x - snake.x-snake.w/2);
-  let distY = Math.abs(apple.y - snake.y-snake.h/2);
-
-  if (distX > (snake.w/2 + apple.r)) {
-    return false
+  if (snake.x < apple.x + apple.w &&
+    snake.x + snake.w > apple.x &&
+    snake.y < apple.y + apple.h &&
+    snake.y + snake.h > apple.y) {
+      console.log('collision!')
+    }
   }
 
-  if (distY > (snake.h/2 + apple.r)) {
-    return false
-  }
+appleDetection();
+// let snake = {
+//   x: 100,
+//   y: 50,
+//   w: 7,
+//   h: 7
+// };
 
-  if (distX < (snake.w/2 + apple.r)) {
-    return true
-  }
-  if (distY <= (snake.h/2 + apple.r)) {
-    return true
-  }
-
-  let dx = distX - snake.w/2
-  let dy = distY - snake.h/2
-
-  return (dx*dx+dy*dy<=(apple.r*apple.r));
-}
-
+// let apple = {
+//   x: 180,
+//   y: 100,
+//   w: 2,
+//   h: 2
+// };
