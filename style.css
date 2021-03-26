@@ -21,3 +21,12 @@ body{
   height: 480px;  
 }
 
+#score{
+  width: 200;
+  height: 100;
+  margin-top: 0.5em;
+  text-align: center;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: firebrick;
+  font-size: 2em;
+ }

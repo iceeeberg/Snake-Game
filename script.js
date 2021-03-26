@@ -1,15 +1,6 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext("2d");
-
-let snakePositionX = 100;
-let snakePositionY = 50;
-let snakeSpeedX = 5;
-let snakeSpeedY = 5;
-
-let applePositionX = 180;
-let applePositionY = 100;
-let appleWidth = 2;
-let appleHeight = 2;
+const SNAKE_SPEED = 5;
 
 let snake = {
   x: 100,
@@ -21,17 +12,19 @@ let snake = {
 let apple = {
   x: 180,
   y: 100,
-  w: 2,
-  h: 2
+  w: 7,
+  h: 7
 };
 
+let segment = [];
+let direction;
 let score = 0;
 
-let direction;
+gameOver();
 
 function drawSnake() {
 ctx.beginPath();
-ctx.rect(snakePositionX,snakePositionY,7,7 );
+ctx.rect(snake.x,snake.y,snake.w, snake.h);
 ctx.fillStyle = "#90EE90"
 ctx.fill();
 ctx.closePath;
@@ -39,7 +32,7 @@ ctx.closePath;
 
 function drawApple() {
 ctx.beginPath();
-ctx.rect(applePositionX,applePositionY,2,2);
+ctx.rect(apple.x,apple.y,apple.w, apple.w);
 ctx.fillStyle = "#FF0000"
 ctx.fill();
 ctx.closePath;
@@ -56,16 +49,16 @@ function gameOver () {
 function moveSnake() {
   switch (direction) {
     case "right":
-      snakePositionX += snakeSpeedX
+      snake.x += SNAKE_SPEED
       break;
     case "left":
-      snakePositionX -= snakeSpeedX
+      snake.x -= SNAKE_SPEED
       break;
     case "up":
-      snakePositionY -= snakeSpeedY
+      snake.y -= SNAKE_SPEED
       break;
     case "down":
-      snakePositionY += snakeSpeedY
+      snake.y += SNAKE_SPEED
       break;
     default:
       break;
@@ -97,43 +90,38 @@ window.onload = () => {
     drawApple();
     drawSnake();
     moveSnake();
-  if (snakePositionX + snakeSpeedX === canvas.width || snakePositionX + snakeSpeedX < 0) {
+    appleDetection();
+  if (snake.x + SNAKE_SPEED === canvas.width || snake.x + SNAKE_SPEED < 0) {
     gameOver();
     reset();
   }
-  if (snakePositionY + snakeSpeedY === canvas.height || snakePositionY + snakeSpeedY < 0 ) {
+  if (snake.y + SNAKE_SPEED === canvas.height || snake.y+ SNAKE_SPEED < 0 ) {
     gameOver();
     reset();
   }
   }, 100);
-  appleDetection();
+  gameOver();
 };
 
 function reset(){
-  snakePositionX = canvas.width/2
-  snakePositionY = canvas.height/2
+ window.location.reload();
 };
 
-function appleDetection (apple, snake) {
+function appleDetection () {
   if (snake.x < apple.x + apple.w &&
     snake.x + snake.w > apple.x &&
     snake.y < apple.y + apple.h &&
     snake.y + snake.h > apple.y) {
-      console.log('collision!')
+     eatApple();
+     trackScore();
     }
   }
 
-appleDetection();
-// let snake = {
-//   x: 100,
-//   y: 50,
-//   w: 7,
-//   h: 7
-// };
+function eatApple (){
+  apple.x = Math.floor(Math.random(5) * canvas.width)
+  apple.y = Math.floor(Math.random(5) * canvas.height)
+}
 
-// let apple = {
-//   x: 180,
-//   y: 100,
-//   w: 2,
-//   h: 2
-// };
+function trackScore (score) {
+  
+}
