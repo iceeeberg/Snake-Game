@@ -3,8 +3,9 @@ const ctx = canvas.getContext("2d");
 const SNAKE_SPEED = 5;
 
 let snake = {
-  segment: [{x: 100, y: 50},
-            {x: 95, y: 50},
+  segment: [
+    {x: 100, y: 50},
+    {x: 95, y: 50},
   ],
   w: 7,
   h: 7
@@ -39,19 +40,24 @@ ctx.closePath;
 };
 
 function gameOver () {
-  let gradient = ctx.createLinearGradient(0,0, canvas.width, 0);
+  let gradient = ctx.createLinearGradient(0,0, canvas.width, canvas.height);
   gradient.addColorStop("0","blue");
   ctx.rect(120, 75, 200, 100 )
   ctx.fillStyle = gradient;
   ctx.fillText("Game Over", 120, 75);
 }
 
-debugger
 
 function moveSnake() {
+  if (direction){
+    for (let index = 0; index < snake.segment.length - 1; index++) {
+      snake.segment[index + 1].x = snake.segment[index].x
+      snake.segment[index + 1].y = snake.segment[index].y
+    }
+  }
   switch (direction) {
     case "right":
-      snake.segment[1].x += SNAKE_SPEED
+      snake.segment[0].x += SNAKE_SPEED
       break;
     case "left":
       snake.segment[0].x -= SNAKE_SPEED
@@ -114,6 +120,8 @@ function appleDetection () {
     snake.segment[0].y < apple.y + apple.h &&
     snake.segment[0].y + snake.h > apple.y) {
      eatApple();
+     snake.segment.x++
+     snake.segment.y++
     }
   }
 
@@ -122,5 +130,4 @@ function eatApple (){
   apple.y = Math.floor(Math.random(5) * canvas.height)
 }
 
-
-
+gameOver();
