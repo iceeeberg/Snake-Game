@@ -51,7 +51,7 @@ debugger
 function moveSnake() {
   switch (direction) {
     case "right":
-      snake.segment[0].x += SNAKE_SPEED
+      snake.segment[1].x += SNAKE_SPEED
       break;
     case "left":
       snake.segment[0].x -= SNAKE_SPEED
