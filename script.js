@@ -19,22 +19,16 @@ let apple = {
 
 let direction;
 let score = 0;
-
+ 
 function drawSnake() {
-for(let i=0; i<snake.segment.x; i++){
-  for(let j=0; j<snake.segment.y; j++){
-    let snakeX = (i*(snake.segment.x)) + snake.segment.x
-    let snakeY = (j*(snake.segment.y)) + snake.segment.y
-    snake.segment.x[i][j] = snakeX
-    snake.segment.y[i][j] = snakeY
+    snake.segment.forEach((snakePart) => {
     ctx.beginPath();
-    ctx.rect(snake.segment[i].x,snake.segment[j].y,snake.w, snake.h);
+    ctx.rect(snakePart.x,snakePart.y,snake.w, snake.h);
     ctx.fillStyle = "#90EE90"
     ctx.fill();
     ctx.closePath;
+    })
   }
-  }
-}
 
 function drawApple() {
 ctx.beginPath();
@@ -51,6 +45,8 @@ function gameOver () {
   ctx.fillStyle = gradient;
   ctx.fillText("Game Over", 120, 75);
 }
+
+debugger
 
 function moveSnake() {
   switch (direction) {
