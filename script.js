@@ -3,8 +3,9 @@ const ctx = canvas.getContext("2d");
 const SNAKE_SPEED = 5;
 
 let snake = {
-  x: 100,
-  y: 50,
+  segment: [{x: 100, y: 50},
+            {x: 95, y: 50},
+  ],
   w: 7,
   h: 7
 };
@@ -16,19 +17,24 @@ let apple = {
   h: 7
 };
 
-let segment = [];
 let direction;
 let score = 0;
 
-gameOver();
-
 function drawSnake() {
-ctx.beginPath();
-ctx.rect(snake.x,snake.y,snake.w, snake.h);
-ctx.fillStyle = "#90EE90"
-ctx.fill();
-ctx.closePath;
-};
+for(let i=0; i<snake.segment.x; i++){
+  for(let j=0; j<snake.segment.y; j++){
+    let snakeX = (i*(snake.segment.x)) + snake.segment.x
+    let snakeY = (j*(snake.segment.y)) + snake.segment.y
+    snake.segment.x[i][j] = snakeX
+    snake.segment.y[i][j] = snakeY
+    ctx.beginPath();
+    ctx.rect(snake.segment[i].x,snake.segment[j].y,snake.w, snake.h);
+    ctx.fillStyle = "#90EE90"
+    ctx.fill();
+    ctx.closePath;
+  }
+  }
+}
 
 function drawApple() {
 ctx.beginPath();
@@ -49,16 +55,16 @@ function gameOver () {
 function moveSnake() {
   switch (direction) {
     case "right":
-      snake.x += SNAKE_SPEED
+      snake.segment[0].x += SNAKE_SPEED
       break;
     case "left":
-      snake.x -= SNAKE_SPEED
+      snake.segment[0].x -= SNAKE_SPEED
       break;
     case "up":
-      snake.y -= SNAKE_SPEED
+      snake.segment[0].y -= SNAKE_SPEED
       break;
     case "down":
-      snake.y += SNAKE_SPEED
+      snake.segment[0].y += SNAKE_SPEED
       break;
     default:
       break;
@@ -91,16 +97,15 @@ window.onload = () => {
     drawSnake();
     moveSnake();
     appleDetection();
-  if (snake.x + SNAKE_SPEED === canvas.width || snake.x + SNAKE_SPEED < 0) {
+  if (snake.segment[0].x + SNAKE_SPEED === canvas.width || snake.segment[0].x + SNAKE_SPEED < 0) {
     gameOver();
     reset();
   }
-  if (snake.y + SNAKE_SPEED === canvas.height || snake.y+ SNAKE_SPEED < 0 ) {
+  if (snake.segment[0].y + SNAKE_SPEED === canvas.height || snake.segment[0].y+ SNAKE_SPEED < 0 ) {
     gameOver();
     reset();
   }
-  }, 100);
-  gameOver();
+}, 100);
 };
 
 function reset(){
@@ -108,12 +113,11 @@ function reset(){
 };
 
 function appleDetection () {
-  if (snake.x < apple.x + apple.w &&
-    snake.x + snake.w > apple.x &&
-    snake.y < apple.y + apple.h &&
-    snake.y + snake.h > apple.y) {
+  if (snake.segment[0].x < apple.x + apple.w &&
+    snake.segment[0].x + snake.w > apple.x &&
+    snake.segment[0].y < apple.y + apple.h &&
+    snake.segment[0].y + snake.h > apple.y) {
      eatApple();
-     trackScore();
     }
   }
 
@@ -122,6 +126,5 @@ function eatApple (){
   apple.y = Math.floor(Math.random(5) * canvas.height)
 }
 
-function trackScore (score) {
-  
-}
+
+
