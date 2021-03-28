@@ -119,15 +119,15 @@ function appleDetection () {
     snake.segment[0].x + snake.w > apple.x &&
     snake.segment[0].y < apple.y + apple.h &&
     snake.segment[0].y + snake.h > apple.y) {
-     eatApple();
-     snake.segment.x++
-     snake.segment.y++
+    eatApple();
+   Object.assign(snake.segment) = snake.segment.x.push(snake.segment)
+   Object.assign(snake.segment) = snake.segment.y.push(snake.segment)
     }
   }
 
 function eatApple (){
-  apple.x = Math.floor(Math.random(5) * canvas.width)
-  apple.y = Math.floor(Math.random(5) * canvas.height)
+  apple.x = Math.floor(Math.random(SNAKE_SPEED) * canvas.width)
+  apple.y = Math.floor(Math.random(SNAKE_SPEED) * canvas.height)
 }
 
 gameOver();
