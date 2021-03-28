@@ -1,32 +1,33 @@
-h1{
-  text-align: center;
-  font-family: 'Courier New', Courier, monospace;
-  color:forestgreen;
-  font-size: 3em;
+h1 {
+	text-align: center;
+	font-family: 'Courier New', Courier, monospace;
+	color: forestgreen;
+	font-size: 3em;
 }
 
-body{
- background-color: yellowgreen; 
+body {
+	background-color: yellowgreen;
 }
 
-#gameCanvas{
-  background-color: lightslategray;
-  padding-left: 0;
-  margin-top: 2em;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 750px; 
-  height: 480px;  
+#gameCanvas {
+	background-color: lightslategray;
+	padding-left: 0;
+	margin-top: 2em;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: 750px;
+	height: 480px;
+	background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
-#score{
-  width: 200;
-  height: 100;
-  margin-top: 0.5em;
-  text-align: center;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: firebrick;
-  font-size: 2em;
- }
+div {
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: 900;
+	font-family: fantasy;
+	color: navy;
+}

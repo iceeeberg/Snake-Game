@@ -39,6 +39,12 @@ ctx.fill();
 ctx.closePath;
 };
 
+function drawScoreBoard(){
+  ctx.font = "10px Arial"
+  ctx.fillStyle = "#8B008B"
+  ctx.fillText("Score:"+score, 8, 20)
+}
+
 function gameOver () {
   let gradient = ctx.createLinearGradient(0,0, canvas.width, canvas.height);
   gradient.addColorStop("0","blue");
@@ -97,6 +103,7 @@ window.onload = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawApple();
     drawSnake();
+    drawScoreBoard();
     moveSnake();
     appleDetection();
   if (snake.segment[0].x + SNAKE_SPEED === canvas.width || snake.segment[0].x + SNAKE_SPEED < 0) {
@@ -120,14 +127,15 @@ function appleDetection () {
     snake.segment[0].y < apple.y + apple.h &&
     snake.segment[0].y + snake.h > apple.y) {
     eatApple();
-   Object.assign(snake.segment) = snake.segment.x.push(snake.segment)
-   Object.assign(snake.segment) = snake.segment.y.push(snake.segment)
+    let newTail = Object.assign({}, snake.segment[0]);
+    snake.segment.push(newTail);
     }
   }
 
 function eatApple (){
   apple.x = Math.floor(Math.random(SNAKE_SPEED) * canvas.width)
   apple.y = Math.floor(Math.random(SNAKE_SPEED) * canvas.height)
+  score++;
 }
 
 gameOver();
