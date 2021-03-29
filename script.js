@@ -38,7 +38,7 @@ function drawApple() {
 }
 
 function drawScoreBoard() {
-	ctx.font = '10px Fantasy';
+	ctx.font = '10px Arial';
 	ctx.fillStyle = '#8B008B';
 	ctx.fillText('Score:' + score, 8, 9);
 }
@@ -107,7 +107,7 @@ function appleDetection() {
 		snake.segment[0].y + snake.h > apple.y
 	) {
 		eatApple();
-		let newTail = Object.assign({}, snake.segment[0]);
+		let newTail = Object.assign({}, snake.segment.length + 1);
 		snake.segment.push(newTail);
 	}
 }
@@ -126,16 +126,29 @@ window.onload = () => {
 		drawScoreBoard();
 		moveSnake();
 		appleDetection();
+		bodyCollision();
 
 		if (snake.segment[0].x + SNAKE_SPEED > canvas.width || snake.segment[0].x + SNAKE_SPEED < 0) {
-      drawGameOver()
+			drawGameOver();
+			alert('You ran into a wall!');
 			reset();
 		}
 		if (snake.segment[0].y + SNAKE_SPEED > canvas.height || snake.segment[0].y + SNAKE_SPEED < 0) {
-			drawGameOver()
+			drawGameOver();
+			alert('You ran into a wall!');
 			reset();
-		} 
+		}
 	}, 100);
 };
+
+function bodyCollision() {
+	for (let i = 1; i < snake.segment.length; i++) {
+		if (snake.segment[0].x === snake.segment[i].x && snake.segment[0].y === snake.segment[i].y) {
+			drawGameOver();
+			alert('You ate yourself!');
+			reset();
+		}
+	}
+}
 
 drawGameOver();
