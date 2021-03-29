@@ -38,12 +38,12 @@ function drawApple() {
 }
 
 function drawScoreBoard() {
-	ctx.font = '10px Arial';
+	ctx.font = '10px Fantasy';
 	ctx.fillStyle = '#8B008B';
 	ctx.fillText('Score:' + score, 8, 9);
 }
 
-function gameOver() {
+function drawGameOver() {
 	let gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 	gradient.addColorStop('0', 'blue');
 	ctx.rect(120, 75, 200, 100);
@@ -128,19 +128,14 @@ window.onload = () => {
 		appleDetection();
 
 		if (snake.segment[0].x + SNAKE_SPEED > canvas.width || snake.segment[0].x + SNAKE_SPEED < 0) {
-			gameOver();
+      drawGameOver()
 			reset();
 		}
 		if (snake.segment[0].y + SNAKE_SPEED > canvas.height || snake.segment[0].y + SNAKE_SPEED < 0) {
-			gameOver();
+			drawGameOver()
 			reset();
 		} 
-    for (let i = 1; i < snake.segment.length; i++){
-      if (snake.segment[0].x === snake.segment[i].x){
-      gameOver();
-      reset();}
-    }
 	}, 100);
 };
 
-gameOver();
+drawGameOver();
