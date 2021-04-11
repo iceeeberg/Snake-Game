@@ -12,4 +12,4 @@ This application introduced me to the concepts on how to use HTML 5 canvas and h
 
 ## Author
 
-Dante Leeseberg - Full Stack Software Developer [LinkedIn](https://www.linkedin.com/in/dante-leeseberg-bba05883/)/ Website coming soon. 
+Dante Leeseberg - Full Stack Software Developer [LinkedIn](https://www.linkedin.com/in/dante-leeseberg-bba05883/) | Website coming soon. 
