@@ -1,12 +1,12 @@
 h1 {
 	text-align: center;
-	font-family: 'Courier New', Courier, monospace;
-	color: whitesmoke;
+	color: purple;
 	font-size: 3em;
+	font-weight: 800;
 }
 
 body {
-	background-color: yellowgreen;
+	background-color: black;
 }
 
 #gameCanvas {
@@ -30,4 +30,5 @@ div {
 	font-weight: 900;
 	font-family: fantasy;
 	color: navy;
+	background-color: cornsilk;
 }
