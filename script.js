@@ -140,7 +140,6 @@ function wallCollision(){
 function bodyCollision() {
 	for (let i = 1; i < snake.segment.length; i++) {
 		if (snake.segment[0].x === snake.segment[i].x && snake.segment[0].y === snake.segment[i].y) {
-			drawGameOver();
 			alert('You ate yourself!');
 			reset();
 		}
